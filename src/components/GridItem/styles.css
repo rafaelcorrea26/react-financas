@@ -1,10 +1,18 @@
-td {
-  padding-top: 15px;
-  text-align: center;
-  word-break: break-all;
+/*th = titulos,  td = o que tem dentro da coluna*/
+.grid-item td {
+  min-width: 50px;
+  padding: 10px 15px;
+  border: 1px solid #DDD;
+   width: 100%;
 }
 
+.grid-item td { 
+  color: #333;
+  font-weight: 600;
+  align-items: center;
+} 
+
 svg {
-    width: 18px;
-    height: 18px;
-  }
+  width: 18px;
+  height: 18px;
+}

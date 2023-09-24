@@ -38,16 +38,18 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
         <>
             <div className="formulario">
                 <InputText
+                    type=''
                     required={true}
                     label="Descrição"
                     value={desc}
-                    onChange={(e) => setDesc(e.target.value)} 
+                    onChange={value => setDesc(value)}
                     />
                 <InputText
+                    type='number'
                     required={true}
                     label="Valor"
                     value={amount}
-                    onChange={(e) => setDesc(e.target.value)} 
+                    onChange={value => setAmount(value)}
                     />
                 <InputRadioGroup 
                     required={true} 
@@ -55,7 +57,9 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
                     />
                 <Button onClick={handleSave}>Adicionar</Button>
             </div>
+            <div className="table-form">
             <Grid itens={transactionsList} setItens={setTransactionsList} />
+            </div>
         </>
     );
 };

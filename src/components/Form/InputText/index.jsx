@@ -2,7 +2,6 @@ import './styles.css';
 
  /*required={props.obrigatorio} obriga a ser obrigatorio o campo que e passado no parametro*/
 const InputText = (props) => {
-    const placeholderModificada = `Digite seu ${props.label}`;
     const onChange = (evento) => {
         props.onChange(evento.target.value)
     }  
@@ -11,9 +10,10 @@ const InputText = (props) => {
         <div className="inputText">
             <label>{props.label}</label>
             <input value={props.value} 
+                   type={props.type ? 'number' : ''}
                    onChange={onChange} 
                    required={props.required}  
-                   placeholder= {placeholderModificada}/>
+            />
         </div>
     )
 }

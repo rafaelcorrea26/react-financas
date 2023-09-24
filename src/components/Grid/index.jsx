@@ -10,24 +10,27 @@ const Grid = ({ itens, setItens }) => {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th width={40}>Descrição</th>
-          <th width={40}>Valor</th>
-          <th width={10} alignCenter>
-            Tipo
-          </th>
-          <th width={10}></th>
-        </tr>
-      </thead>
-      <body>
-        {itens?.map((item, index) => (
-          <GridItem key={index} item={item} onDelete={onDelete} />
-        ))}
-      </body>
-    </table>
+    <div className="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+            <th></th>
+          </tr>
+        </thead>
+
+          {itens?.map((item, index) => (
+            <GridItem key={index} item={item} onDelete={onDelete} />
+          ))}
+
+      </table>
+    </div>
   );
-};
+}
+
+
+
 
 export default Grid;

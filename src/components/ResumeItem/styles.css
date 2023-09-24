@@ -6,41 +6,49 @@
     border-radius: 5px;
     padding: 5px 15px;
     width: 30%;
+    max-width: 1120px;
+    margin: 20px auto;
+    width: 98%;
+    box-shadow: 0px 0px 5px #ccc;
+    justify-content: space-around;
 }
 
+
 @media screen and (max-width: 750px) {
-    .cabeca {
+    .header-resume-item {
         width: 20%;
     }
 
-    .cabeca p {
+    .header-resume-item p {
         font-size: 12px;
     }
 
-    .cabeca span {
+    .header-resume-item span {
         font-size: 20px;
     }
 }
 
-.header {
+.header-resume-item {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
     gap: 10px;
     margin: 20px auto;
+    font-size: 30px;
+    color: #000;
 }
 
-.header p {
+.header-resume-item p {
     font-size: 20px;
 }
 
-.header span {
+ span {
     font-size: 30px;
     font-weight: bold;
 }
 
-svg {
-    width: 18px;
-    height: 18px;
+.header-resume-item svg {
+    width: 26px;
+    height: 26px;
   }

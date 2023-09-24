@@ -4,7 +4,7 @@ import "./styles.css";
 const ResumeItem = ({ title, Icon, value }) => {
   return (
     <div className="resumeitem">
-      <header className="cabeca"> 
+      <header className="header-resume-item"> 
       <p>{title}</p>        
         <Icon />
       </header>

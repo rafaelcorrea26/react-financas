@@ -8,7 +8,7 @@ const InputRadioGroup = (props) => {
 
     return (
         <div onChange={onChange} className='radiog' required={props.required}>
-            <input type="radio" value="Entrada" name="tipo" /> Entrada
+            <input type="radio" value="Entrada" name="tipo" checked='true'/> Entrada
             <input type="radio" value="Saida" name="tipo" /> Saida
         </div>
     )

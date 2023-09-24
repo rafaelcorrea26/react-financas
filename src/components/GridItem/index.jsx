@@ -1,5 +1,5 @@
 import React from "react";
-import * as C from "./styles";
+import "./styles.css";
 import {
   FaRegArrowAltCircleUp,
   FaRegArrowAltCircleDown,
@@ -8,10 +8,11 @@ import {
 
 const GridItem = ({ item, onDelete }) => {
   return (
+    <tbody className="grid-item">
     <tr>
       <td>{item.desc}</td>
       <td>{item.amount}</td>
-      <td alignCenter>
+      <td>
         {item.expense ? (
           <FaRegArrowAltCircleDown color="red" />
         ) : (
@@ -22,6 +23,7 @@ const GridItem = ({ item, onDelete }) => {
         <FaTrash onClick={() => onDelete(item.id)} />
       </td>
     </tr>
+    </tbody>
   );
 };
 
