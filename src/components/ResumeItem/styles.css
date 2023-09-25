@@ -13,21 +13,6 @@
     justify-content: space-around;
 }
 
-
-@media screen and (max-width: 750px) {
-    .header-resume-item {
-        width: 20%;
-    }
-
-    .header-resume-item p {
-        font-size: 12px;
-    }
-
-    .header-resume-item span {
-        font-size: 20px;
-    }
-}
-
 .header-resume-item {
     display: flex;
     align-items: center;
@@ -52,3 +37,18 @@
     width: 26px;
     height: 26px;
   }
+
+  
+@media screen and (max-width: 750px) {
+    .header-resume-item {
+        width: 20%;
+    }
+
+     p {
+        font-size: 10px;
+    }
+
+     span {
+        font-size: 20px;
+    }
+}

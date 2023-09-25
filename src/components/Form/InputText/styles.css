@@ -17,3 +17,10 @@
     outline: none;
     font-weight: 300;
 }
+
+@media (min-width: 768) {
+    .inputText input {
+        width:70%;
+      
+    }
+  }
