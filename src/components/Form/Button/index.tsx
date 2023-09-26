@@ -1,18 +1,16 @@
-import { ReactElement , MouseEvent} from 'react'
-import './styles.css'
+import React, { ReactNode, MouseEvent } from 'react';
 
-import React from 'react';
+interface ButtonProps  {
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  children: ReactNode;
+};
 
-
-interface BotaoProps {
-    onClick: MouseEvent<HTMLButtonElement>
-    children: ReactElement
-}
-
-const Button = (props: BotaoProps) => {
-    return (
-    <button     
-    onClick={props.onClick} className='button'> {props.children}</button>)
+function Button({ onClick, children }: ButtonProps) {
+  return (
+    <button onClick={onClick} className='button'>
+      {children}
+    </button>
+  );
 }
 
 export default Button;
