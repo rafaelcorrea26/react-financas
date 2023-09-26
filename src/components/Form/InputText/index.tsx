@@ -1,10 +1,18 @@
+import React from 'react';
 import './styles.css';
 
- /*required={props.obrigatorio} obriga a ser obrigatorio o campo que e passado no parametro*/
-const InputText = (props) => {
-    const onChange = (evento) => {
-        props.onChange(evento.target.value)
-    }  
+interface InputTextProps {
+    onChange: (valor: string) => void;
+    required: boolean;
+    label:string;
+    value:string;
+    type:string;
+}
+
+const InputText = (props:InputTextProps) => {    
+            const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                props.onChange( e.target.value);
+              }
     
     return (
         <div className="inputText">

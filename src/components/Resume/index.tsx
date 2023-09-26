@@ -7,7 +7,14 @@ import {
   FaDollarSign,
 } from "react-icons/fa";
 
-const Resume = ({ income, expense, total }) => {
+interface ResumeProps  {
+  income: string
+  expense: string
+  total: string
+}
+
+
+const Resume = ({ income, expense, total }:ResumeProps) => {
   return (
     <div className="resume">
       <ResumeItem
