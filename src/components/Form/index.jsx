@@ -51,11 +51,13 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
                     value={amount}
                     onChange={value => setAmount(value)}
                     />
+                <div className="divbutton">
                 <InputRadioGroup 
                     required={true} 
                     onChange={() => setExpense(!isExpense)} 
                     />
                 <Button onClick={handleSave}>Adicionar</Button>
+                </div>
             </div>
             <div className="table-form">
             <Grid itens={transactionsList} setItens={setTransactionsList} />

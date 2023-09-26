@@ -12,14 +12,32 @@
     flex-wrap: wrap;
   }
 
-
-
-
-
   .table-form {
     align-items: center;
     background-color: #fff;
     max-width: 1120px;
     margin: 20px auto;
     box-shadow: 0px 0px 5px #ccc;
+  }
+
+  .divbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width:800px) {
+    .formulario {
+      display: block;
+    }
+
+    .divbutton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
   }
