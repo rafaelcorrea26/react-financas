@@ -43,24 +43,24 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
                     label="Descrição"
                     value={desc}
                     onChange={value => setDesc(value)}
-                    />
+                />
                 <InputText
                     type='number'
                     required={true}
                     label="Valor"
                     value={amount}
                     onChange={value => setAmount(value)}
-                    />
+                />
                 <div className="divbutton">
-                <InputRadioGroup 
-                    required={true} 
-                    onChange={() => setExpense(!isExpense)} 
+                    <InputRadioGroup
+                        checked={true}
+                        onChange={() => setExpense(!isExpense)}
                     />
-                <Button onClick={handleSave}>Adicionar</Button>
+                    <Button onClick={handleSave}>Adicionar</Button>
                 </div>
             </div>
             <div className="table-form">
-            <Grid itens={transactionsList} setItens={setTransactionsList} />
+                <Grid itens={transactionsList} setItens={setTransactionsList} />
             </div>
         </>
     );
