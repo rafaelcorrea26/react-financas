@@ -6,7 +6,16 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
-const GridItem = ({ item, onDelete }) => {
+
+interface ITransaction {
+  id:number
+  desc:string
+  amount:number
+  expense:number
+}
+
+
+const GridItem = ( item:ITransaction, onDelete: (id: number) => void) => {
   return (
     <tbody className="grid-item">
     <tr>
@@ -19,7 +28,7 @@ const GridItem = ({ item, onDelete }) => {
           <FaRegArrowAltCircleUp color="green" />
         )}
       </td>
-      <td alignCenter>
+      <td className="delete">
         <FaTrash onClick={() => onDelete(item.id)} />
       </td>
     </tr>

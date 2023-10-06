@@ -2,10 +2,20 @@ import React from "react";
 import GridItem from "../GridItem";
 import './styles.css';
 
-const Grid = ({ itens, setItens }) => {
-  const onDelete = (ID) => {
-    const newArray = itens.filter((transaction) => transaction.id !== ID);
-    setItens(newArray);
+
+interface ITransaction {
+  id: number,
+  desc: string,
+  amount: number,
+  expense: boolean,
+}
+
+
+
+const Grid = ( itens:Array<ITransaction>, setItens: (id: number) => void ) => {
+  const onDelete = (id: number) => {
+    const newArray = itens.filter((transaction:ITransaction) => transaction.id !== id);
+    setItens;
     localStorage.setItem("transactions", JSON.stringify(newArray));
   };
 
@@ -21,7 +31,7 @@ const Grid = ({ itens, setItens }) => {
           </tr>
         </thead>
 
-          {itens?.map((item, index) => (
+          {itens?.map((item:ITransaction, index:number) => (
             <GridItem key={index} item={item} onDelete={onDelete} />
           ))}
 
@@ -29,8 +39,5 @@ const Grid = ({ itens, setItens }) => {
     </div>
   );
 }
-
-
-
 
 export default Grid;
