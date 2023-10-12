@@ -2,20 +2,15 @@ import React from "react";
 import GridItem from "../GridItem";
 import './styles.css';
 
-
-interface ITransaction {
-  id: number,
-  desc: string,
-  amount: number,
-  expense: boolean,
+interface GridProps {
+  itens:Array<Transaction>;
+  setItens: (transactionsList: Array<Transaction>) => void;
 }
 
-
-
-const Grid = ( itens:Array<ITransaction>, setItens: (id: number) => void ) => {
+const Grid = (props:GridProps) => {
   const onDelete = (id: number) => {
-    const newArray = itens.filter((transaction:ITransaction) => transaction.id !== id);
-    setItens;
+    const newArray = props.itens.filter((transaction:Transaction) => transaction.id !== id);
+    props.setItens(newArray);
     localStorage.setItem("transactions", JSON.stringify(newArray));
   };
 
@@ -31,8 +26,7 @@ const Grid = ( itens:Array<ITransaction>, setItens: (id: number) => void ) => {
           </tr>
         </thead>
 
-          {itens?.map((item:ITransaction, index:number) => (
-            <GridItem key={index} item={item} onDelete={onDelete} />
+          {props.itens?.map((item:Transaction) => (<GridItem item={item} onDelete={onDelete} />
           ))}
 
       </table>

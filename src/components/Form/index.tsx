@@ -5,22 +5,17 @@ import InputText from "./InputText";
 import InputRadioGroup from "./InputRadioGroup";
 import Button from "./Button";
 
-interface ITransaction {
-    id: BigInteger,
-    desc: string,
-    amount: number,
-    expense: boolean,
-}
+
 
 interface FormProps {
-    handleAdd: (transaction: ITransaction) => void;
-    transactionsList: (transactionsList: Array<ITransaction>) => void;
-    setTransactionsList: (transactionsList: Array<ITransaction>) => void;
+    handleAdd: (transaction: Transaction) => void;
+    transactionsList:  Array<Transaction>;
+    setTransactionsList: (transactionsList: Array<Transaction>) => void;
 }
 
 const Form = ({ handleAdd, transactionsList, setTransactionsList }: FormProps) => {
     const [desc, setDesc] = useState<string>("");
-    const [amount, setAmount] = useState<string>("0");
+    const [amount, setAmount] = useState<Number>(0);
     const [isExpense, setExpense] = useState<Boolean>(false);
 
     const generateID = () => Math.round(Math.random() * 1000);
@@ -35,17 +30,17 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }: FormProps) =
             return;
         }
 
-        const transaction = {
+        const transaction :Transaction = {
             id: generateID(),
             desc: desc,
-            amount: amount,
-            expense: isExpense,
+            amount: Number(amount),
+            expense: Boolean(isExpense),
         };
 
-        handleAdd;
+        handleAdd(transaction);
 
         setDesc("");
-        setAmount("0");
+        setAmount(0);
     };
 
     return (
@@ -62,13 +57,13 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }: FormProps) =
                     type='number'
                     required={true}
                     label="Valor"
-                    value={amount}
-                    onChange={value => setAmount(value)}
+                    value={String(amount)}
+                    onChange={value => setAmount(Number(value))}
                 />
                 <div className="divbutton">
                     <InputRadioGroup
                         checked={true}
-                        onChange={() => setExpense(!isExpense)}
+                        onChange={value => setExpense(!isExpense)}
                     />
                     <Button onClick={handleSave}>Adicionar</Button>
                 </div>

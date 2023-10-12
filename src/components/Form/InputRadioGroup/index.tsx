@@ -2,8 +2,8 @@ import React from 'react';
 import './styles.css';
 
 interface InputRadioGroupProps {
-    onChange: (valor: string) => void;
     checked: boolean;
+    onChange: (valor: string) => void;    
 
 }
 

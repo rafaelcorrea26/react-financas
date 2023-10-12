@@ -7,29 +7,26 @@ import {
 } from "react-icons/fa";
 
 
-interface ITransaction {
-  id:number
-  desc:string
-  amount:number
-  expense:number
+interface GridItemProps {
+  onDelete: (id: number) => void;
+  item:Transaction;
 }
 
-
-const GridItem = ( item:ITransaction, onDelete: (id: number) => void) => {
+const GridItem = (props: GridItemProps) => {
   return (
     <tbody className="grid-item">
     <tr>
-      <td>{item.desc}</td>
-      <td>{item.amount}</td>
+      <td>{props.item.desc}</td>
+      <td>{props.item.amount}</td>
       <td>
-        {item.expense ? (
+        {props.item.expense ? (
           <FaRegArrowAltCircleDown color="red" />
         ) : (
           <FaRegArrowAltCircleUp color="green" />
         )}
       </td>
       <td className="delete">
-        <FaTrash onClick={() => onDelete(item.id)} />
+        <FaTrash onClick={() => props.onDelete(props.item.id)} />
       </td>
     </tr>
     </tbody>

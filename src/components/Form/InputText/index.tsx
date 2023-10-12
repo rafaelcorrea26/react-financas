@@ -2,11 +2,11 @@ import React from 'react';
 import './styles.css';
 
 interface InputTextProps {
-    onChange: (valor: string) => void;
+    type:string;
     required: boolean;
     label:string;
     value:string;
-    type:string;
+    onChange: (valor: string) => void; 
 }
 
 const InputText = (props:InputTextProps) => {    

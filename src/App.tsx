@@ -9,14 +9,6 @@ interface ResumeProps  {
   total: string
 }
 
-interface ITransaction {
-  amount:number
-}
-
-interface IItem {
-  expense:number
-}
-
 const App = (resume:ResumeProps) => {
   const data = localStorage.getItem("transactions");
   const [transactionsList, setTransactionsList] = useState(
@@ -28,12 +20,12 @@ const App = (resume:ResumeProps) => {
 
   useEffect(() => {
     const amountExpense = transactionsList
-      .filter((item:IItem) => item.expense)
-      .map((transaction:ITransaction) => Number(transaction.amount));
+      .filter((item:Item) => item.expense)
+      .map((transaction:Transaction) => Number(transaction.amount));
 
     const amountIncome = transactionsList
-      .filter((item:IItem) => !item.expense)
-      .map((transaction:ITransaction) => Number(transaction.amount));
+      .filter((item:Item) => !item.expense)
+      .map((transaction:Transaction) => Number(transaction.amount));
 
      resume.expense = amountExpense.reduce((acc:number, cur:number) => acc + cur, 0).toFixed(2);
      resume.income = amountIncome.reduce((acc:number, cur:number) => acc + cur, 0).toFixed(2);
@@ -45,7 +37,7 @@ const App = (resume:ResumeProps) => {
     setTotal(`${Number(resume.income) < Number(resume.expense) ? "-" : ""}R$ ${resume.total}`);
   }, [transactionsList]);
 
-  const handleAdd = (transaction:ITransaction) => {
+  const handleAdd = (transaction:Transaction) => {
     const newArrayTransactions = [...transactionsList, transaction];
 
     setTransactionsList(newArrayTransactions);

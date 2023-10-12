@@ -1,0 +1,3 @@
+type Item = {
+    expense:number
+  }
