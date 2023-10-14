@@ -4,19 +4,19 @@ import { IconType } from "react-icons";
 
 
 interface ResumeItemProps  {
-  title: string
+  titulo: string
   Icon: IconType
-  value: string
+  valor: string
 }
 
-const ResumeItem = ({ title, Icon, value }:ResumeItemProps) => {
+const ResumeItem = ({ titulo, Icon, valor }:ResumeItemProps) => {
   return (
     <div className="resumeitem">
       <header className="header-resume-item"> 
-      <p>{title}</p>        
+      <p>{titulo}</p>        
         <Icon />
       </header>
-      <span>{value}</span>
+      <span>{valor}</span>
     </div>
   );
 };

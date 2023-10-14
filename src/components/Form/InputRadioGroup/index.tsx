@@ -4,7 +4,6 @@ import './styles.css';
 interface InputRadioGroupProps {
     checked: boolean;
     onChange: (valor: string) => void;    
-
 }
 
 const InputRadioGroup = (props: InputRadioGroupProps) => {
@@ -12,10 +11,9 @@ const InputRadioGroup = (props: InputRadioGroupProps) => {
         props.onChange(e.target.value);
     }
 
-
     return (
         <div onChange={onChange} className='radiog'>
-            <input type="radio" value="Entrada" name="tipo" checked={props.checked} /> Entrada
+            <input type="radio" value="Entrada" name="tipo" checked={props.checked}/> Entrada
             <input type="radio" value="Saida" name="tipo" /> Saida
         </div>
     )

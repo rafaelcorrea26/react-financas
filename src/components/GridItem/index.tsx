@@ -9,7 +9,7 @@ import {
 
 interface GridItemProps {
   onDelete: (id: number) => void;
-  item:Transaction;
+  item:Transacao;
 }
 
 const GridItem = (props: GridItemProps) => {
@@ -17,9 +17,9 @@ const GridItem = (props: GridItemProps) => {
     <tbody className="grid-item">
     <tr>
       <td>{props.item.desc}</td>
-      <td>{props.item.amount}</td>
+      <td>{props.item.quantidade}</td>
       <td>
-        {props.item.expense ? (
+        {props.item.ehDespesa ? (
           <FaRegArrowAltCircleDown color="red" />
         ) : (
           <FaRegArrowAltCircleUp color="green" />

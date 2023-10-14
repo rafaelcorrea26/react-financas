@@ -8,26 +8,43 @@ import {
 } from "react-icons/fa";
 
 interface ResumeProps  {
-  income: string
-  expense: string
-  total: string
+  renda: number
+  despesa: number
+  total: number
 }
 
 
-const Resume = ({ income, expense, total }:ResumeProps) => {
+const Resume = ({ renda, despesa, total }:ResumeProps) => {
+  function valorMaiorQueZero(valor:number):string {
+    if (valor > 0 ){
+      return `R$ ${valor}`;
+    } else return "R$ 0.00";
+  }
+
+  function valorTotal(renda:number, despesa:number, total:number):string {
+    if (total > 0 ){
+      if (renda < despesa){
+        return `R$ -${total}`;
+      } else {
+        return `R$ ${total}`;
+      }   
+    } else { return "R$ 0.00";}
+  }
+
+
   return (
     <div className="resume">
       <ResumeItem
-        title="Entradas"
+        titulo="Entradas"
         Icon={FaRegArrowAltCircleUp}
-        value={income}
+        valor={valorMaiorQueZero(renda)}
       />
       <ResumeItem
-        title="Saídas"
+        titulo="Saídas"
         Icon={FaRegArrowAltCircleDown}
-        value={expense}
+        valor={valorMaiorQueZero(despesa)}
       />
-      <ResumeItem title="Total" Icon={FaDollarSign} value={total} />
+      <ResumeItem titulo="Total" Icon={FaDollarSign} valor={valorTotal(renda,despesa,total)} />
     </div>
   );
 };

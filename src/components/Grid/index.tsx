@@ -3,13 +3,13 @@ import GridItem from "../GridItem";
 import './styles.css';
 
 interface GridProps {
-  itens:Array<Transaction>;
-  setItens: (transactionsList: Array<Transaction>) => void;
+  itens:Array<Transacao>;
+  setItens: (listaTransacoes: Array<Transacao>) => void;
 }
 
 const Grid = (props:GridProps) => {
   const onDelete = (id: number) => {
-    const newArray = props.itens.filter((transaction:Transaction) => transaction.id !== id);
+    const newArray = props.itens.filter((transacao:Transacao) => transacao.id !== id);
     props.setItens(newArray);
     localStorage.setItem("transactions", JSON.stringify(newArray));
   };
@@ -26,7 +26,7 @@ const Grid = (props:GridProps) => {
           </tr>
         </thead>
 
-          {props.itens?.map((item:Transaction) => (<GridItem item={item} onDelete={onDelete} />
+          {props.itens?.map((item:Transacao) => (<GridItem key={item.id} item={item} onDelete={onDelete} />
           ))}
 
       </table>

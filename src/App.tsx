@@ -3,56 +3,61 @@ import Header from "./components/Header";
 import Resume from "./components/Resume";
 import Form from "./components/Form";
 
-interface ResumeProps  {
-  income: string
-  expense: string
-  total: string
+interface AppProps  {
+  renda: number
+  despesa: number
+  total: number
 }
 
-const App = (resume:ResumeProps) => {
+interface IItem  {
+  ehDespesa: boolean
+}
+
+
+const App = ({ renda, despesa, total}:AppProps) => {
+  
   const data = localStorage.getItem("transactions");
-  const [transactionsList, setTransactionsList] = useState(
+  const [listaTransacoes, setListaTransacoes] = useState(
     data ? JSON.parse(data) : []
   );
-  const [income, setIncome] = useState<string>();
-  const [expense, setExpense] = useState<string>();
-  const [total, setTotal] = useState<string>();
+  const [rendaManipulada, setRenda] = useState<number>(0);
+  const [despesaManipulada, setDespesa] = useState<number>(0);
+  const [totalManipulado, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    const amountExpense = transactionsList
-      .filter((item:Item) => item.expense)
-      .map((transaction:Transaction) => Number(transaction.amount));
+    const qtdDespesa = listaTransacoes
+      .filter((item:IItem) => item.ehDespesa)
+      .map((transacao:Transacao) => {if(transacao.ehDespesa) return transacao.quantidade});
 
-    const amountIncome = transactionsList
-      .filter((item:Item) => !item.expense)
-      .map((transaction:Transaction) => Number(transaction.amount));
+    const qtdeRenda = listaTransacoes
+      .filter((item:IItem) => !item.ehDespesa)
+      .map((transacao:Transacao) => {if(!transacao.ehDespesa) return transacao.quantidade});
 
-     resume.expense = amountExpense.reduce((acc:number, cur:number) => acc + cur, 0).toFixed(2);
-     resume.income = amountIncome.reduce((acc:number, cur:number) => acc + cur, 0).toFixed(2);
+    despesa = qtdDespesa.reduce((acc:number, cur:number) =>  acc + cur, 0).toFixed(2);
+    renda = qtdeRenda.reduce((acc:number, cur:number) => acc + cur, 0).toFixed(2);
+    total = Number(Math.abs(Number(renda) - Number(despesa)).toFixed(2));
 
-    const total = Math.abs(Number(resume.income) - Number(resume.expense)).toFixed(2);
+    setRenda(renda);
+    setDespesa(despesa);
+    setTotal(total);
+  }, [listaTransacoes]);
 
-    setIncome(`R$ ${resume.income}`);
-    setExpense(`R$ ${resume.expense}`);
-    setTotal(`${Number(resume.income) < Number(resume.expense) ? "-" : ""}R$ ${resume.total}`);
-  }, [transactionsList]);
+  const handleAdd = (transacao:Transacao) => {
+    const newArrayTransacoes = [...listaTransacoes, transacao];
 
-  const handleAdd = (transaction:Transaction) => {
-    const newArrayTransactions = [...transactionsList, transaction];
+    setListaTransacoes(newArrayTransacoes);
 
-    setTransactionsList(newArrayTransactions);
-
-    localStorage.setItem("transactions", JSON.stringify(newArrayTransactions));
+    localStorage.setItem("transactions", JSON.stringify(newArrayTransacoes));
   };
 
   return (
     <>
       <Header />
-      <Resume income={resume.income} expense={resume.expense} total={resume.total} />
+      <Resume renda={rendaManipulada} despesa={despesaManipulada} total={totalManipulado} />
       <Form
         handleAdd={handleAdd}
-        transactionsList={transactionsList}
-        setTransactionsList={setTransactionsList}
+        listaTransacoes={listaTransacoes}
+        setListaTransacoes={setListaTransacoes}
       />
     </>
   );

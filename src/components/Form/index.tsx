@@ -8,39 +8,39 @@ import Button from "./Button";
 
 
 interface FormProps {
-    handleAdd: (transaction: Transaction) => void;
-    transactionsList:  Array<Transaction>;
-    setTransactionsList: (transactionsList: Array<Transaction>) => void;
+    handleAdd: (transaction: Transacao) => void;
+    listaTransacoes:  Array<Transacao>;
+    setListaTransacoes: (listaTransacoes: Array<Transacao>) => void;
 }
 
-const Form = ({ handleAdd, transactionsList, setTransactionsList }: FormProps) => {
+const Form = ({ handleAdd, listaTransacoes, setListaTransacoes }: FormProps) => {
     const [desc, setDesc] = useState<string>("");
-    const [amount, setAmount] = useState<Number>(0);
-    const [isExpense, setExpense] = useState<Boolean>(false);
+    const [quantidade, setQuantidade] = useState<Number>(0);
+    const [ehDespesa, setEhDespesa] = useState<Boolean>(false);
 
     const generateID = () => Math.round(Math.random() * 1000);
 
 
     const handleSave = () => {
-        if (!desc || !amount) {
+        if (!desc || !quantidade) {
             alert("Informe a descrição e o valor!");
             return;
-        } else if (Number(amount) < 1) {
+        } else if (Number(quantidade) < 1) {
             alert("O valor tem que ser positivo!");
             return;
         }
 
-        const transaction :Transaction = {
+        const transaction :Transacao = {
             id: generateID(),
             desc: desc,
-            amount: Number(amount),
-            expense: Boolean(isExpense),
+            quantidade: Number(quantidade),
+            ehDespesa: Boolean(ehDespesa),
         };
-
+        console.log(transaction);
         handleAdd(transaction);
 
         setDesc("");
-        setAmount(0);
+        setQuantidade(0);
     };
 
     return (
@@ -57,19 +57,19 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }: FormProps) =
                     type='number'
                     required={true}
                     label="Valor"
-                    value={String(amount)}
-                    onChange={value => setAmount(Number(value))}
+                    value={String(quantidade)}
+                    onChange={value => setQuantidade(Number(value))}
                 />
                 <div className="divbutton">
                     <InputRadioGroup
                         checked={true}
-                        onChange={value => setExpense(!isExpense)}
+                        onChange={value => setEhDespesa(!ehDespesa)}
                     />
                     <Button onClick={handleSave}>Adicionar</Button>
                 </div>
             </div>
             <div className="table-form">
-                <Grid itens={transactionsList} setItens={setTransactionsList} />
+                <Grid itens={listaTransacoes} setItens={setListaTransacoes} />
             </div>
         </>
     );
