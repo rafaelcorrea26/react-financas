@@ -36,9 +36,8 @@ const Form = ({ handleAdd, listaTransacoes, setListaTransacoes }: FormProps) => 
             quantidade: Number(quantidade),
             ehDespesa: Boolean(ehDespesa),
         };
-        console.log(transaction);
-        handleAdd(transaction);
 
+        handleAdd(transaction);
         setDesc("");
         setQuantidade(0);
     };
